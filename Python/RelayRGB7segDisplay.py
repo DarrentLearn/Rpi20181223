@@ -16,7 +16,7 @@ def formInterface(form):
         bg="GREEN",
         padx=40,
         pady=20,
-        command=buttonRelay_Click(1)
+        command=lambda: buttonRelay_Click(1)
         )
     buttonOn.pack(side=LEFT, padx=3,pady=3)
     buttonOff = Button(
@@ -26,7 +26,7 @@ def formInterface(form):
         bg="RED",
         padx=40,
         pady=20,
-        command=buttonRelay_Click(0)
+        command=lambda: buttonRelay_Click(0)
         )
     buttonOff.pack(side=LEFT, padx=3,pady=3)
     
@@ -108,7 +108,7 @@ def buttonRelay_Click(flag):
         print ("OFF 按下了")
     else:
         print ("ON 按下了")
-    IO.output(LedPin,flag)
+    IO.output(RelayPin,flag)
     
 def buttonRed_Click():
     print("Red 按下了")
