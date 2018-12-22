@@ -1,0 +1,11 @@
+#!/home/pi/Documents/python/LED.py
+from gpiozero import LED
+from time import sleep
+
+red = LED(25)
+
+while True:
+    red.on()
+    sleep(1)
+    red.off()
+    sleep(1)
