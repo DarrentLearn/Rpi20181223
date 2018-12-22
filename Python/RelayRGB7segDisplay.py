@@ -95,13 +95,6 @@ def SetDigitButton(frame, buttonText):
         command=lambda: buttonDigits_Click(buttonText)
     )
     button.pack(side=LEFT, padx=3, pady=3)
-#def buttonOn_Click():
-#    print("ON 按下了")
-#    IO.output(LedPin,1)
-
-#def buttonOff_Click():
-#    print("OFF 按下了")
-#    IO.output(LedPin,0)
 
 def buttonRelay_Click(flag):
     if flag == 0:
