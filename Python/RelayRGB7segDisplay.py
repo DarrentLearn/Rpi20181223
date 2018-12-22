@@ -16,7 +16,7 @@ def formInterface(form):
         bg="GREEN",
         padx=40,
         pady=20,
-        command=buttonOn_Click
+        command=buttonRelay_Click(1)
         )
     buttonOn.pack(side=LEFT, padx=3,pady=3)
     buttonOff = Button(
@@ -26,7 +26,7 @@ def formInterface(form):
         bg="RED",
         padx=40,
         pady=20,
-        command=buttonOff_Click
+        command=buttonRelay_Click(0)
         )
     buttonOff.pack(side=LEFT, padx=3,pady=3)
     
@@ -95,13 +95,20 @@ def SetDigitButton(frame, buttonText):
         command=lambda: buttonDigits_Click(buttonText)
     )
     button.pack(side=LEFT, padx=3, pady=3)
-def buttonOn_Click():
-    print("ON 按下了")
-    IO.output(RelayPin,1)
+#def buttonOn_Click():
+#    print("ON 按下了")
+#    IO.output(LedPin,1)
 
-def buttonOff_Click():
-    print("OFF 按下了")
-    IO.output(RelayPin,0)
+#def buttonOff_Click():
+#    print("OFF 按下了")
+#    IO.output(LedPin,0)
+
+def buttonRelay_Click(flag):
+    if flag == 0:
+        print ("OFF 按下了")
+    else:
+        print ("ON 按下了")
+    IO.output(LedPin,flag)
     
 def buttonRed_Click():
     print("Red 按下了")
