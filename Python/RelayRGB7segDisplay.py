@@ -106,7 +106,8 @@ PinRelay = 12
 PinLedRed = 16
 PinLedGreen = 20
 PinLedBlue = 21
-dictColorLed=dict([["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue]])
+ColorLed = [["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue]]
+dictColorLed=dict(ColorLed)
 PinSenvenLed = (17,4,23,24,25,27,22,18)
 
 IO.setwarnings(False)
@@ -114,7 +115,8 @@ IO.setmode(IO.BCM)
 
 IO.setup(PinRelay,IO.OUT)
 
-for cl in dictColorLed:
+for cl in ColorLed:
+    print(cl)
     IO.setup(cl[1],IO.OUT)
 
 for x in PinSenvenLed:
