@@ -98,6 +98,7 @@ def buttonColorLed_Click(color):
         colorPin = PinLedGreen
     elif color == "Blue":
         colorPin = PinLedBlue
+    print("color pin:",colorPin)
 
     setValue = not IO.input(colorPin)
     if setValue == 1:
@@ -106,24 +107,6 @@ def buttonColorLed_Click(color):
         setText = "熄滅"
     print(setText, color)
     IO.output(colorPin, setValue)
-
-def buttonRed_Click():
-    print("Red 按下了")
-    IO.output(PinLedRed,1)
-    IO.output(PinLedGreen,0)
-    IO.output(PinLedBlue,0)
-
-def buttonGreen_Click():
-    print("Green 按下了")
-    IO.output(PinLedRed,0)
-    IO.output(PinLedGreen,1)
-    IO.output(PinLedBlue,0)
-
-def buttonBlue_Click():
-    print("Blue 按下了")
-    IO.output(PinLedRed,0)
-    IO.output(PinLedGreen,0)
-    IO.output(PinLedBlue,1)
 
 PinRelay = 12
 PinLedRed = 16
