@@ -38,40 +38,9 @@ def formLayout_ColorLED(form):
     label1 = Label(frameColorLED, text="COLOR LED 控制:",font=("Helvetica", 20))
     label1.pack(side=LEFT,padx=3,pady=3)
 
-    buttonsColorLeds = (Red,Green,Blue)
+    buttonsColorLeds = ("Red","Green","Blue")
     for buttonColor in buttonsColorLeds:
         SetColorLedButton(buttonColor)
-    
-    buttonRed = Button(
-        frameColorLED,
-        text="Red",
-        font=("Helvetica", 20),
-        bg="Red",
-        padx=40,
-        pady=20,
-        command=buttonRed_Click
-        )
-    buttonRed.pack(side=LEFT, padx=3,pady=3)
-    buttonGreen = Button(
-        frameColorLED,
-        text="Green",
-        font=("Helvetica", 20),
-        bg="Green",
-        padx=40,
-        pady=20,
-        command=buttonGreen_Click
-        )
-    buttonGreen.pack(side=LEFT, padx=3,pady=3)
-    buttonBlue = Button(
-        frameColorLED,
-        text="Blue",
-        font=("Helvetica", 20),
-        bg="Blue",
-        padx=40,
-        pady=20,
-        command=buttonBlue_Click
-        )
-    buttonBlue.pack(side=LEFT, padx=3,pady=3)
     
     frameColorLED.pack(padx=10,pady=10, fill=X)
     
@@ -119,7 +88,7 @@ def buttonRelay_Click(flag):
         print ("OFF 按下了")
     else:
         print ("ON 按下了")
-    IO.output(LedPin,flag)
+    IO.output(PinRelay,flag)
 
 def buttonColorLed_Click(color):
     if color == "Red":
