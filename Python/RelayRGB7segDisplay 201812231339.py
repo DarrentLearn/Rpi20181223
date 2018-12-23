@@ -47,6 +47,10 @@ def formLayout_ColorLED(form):
 def formLayout_Digit(form):
     'Layout form digitl Control'
     frameDigit = Frame(form, borderwidth=1, relief=GROOVE)
+
+    label1 = Label(frameDigit, text="數字顯示:",font=("Helvetica", 20))
+    label1.pack(side=LEFT,padx=3,pady=3)
+
     for i in range(10):
         SetDigitButton(frameDigit, i)
     frameDigit.pack(padx=10, pady=10, fill=X)
