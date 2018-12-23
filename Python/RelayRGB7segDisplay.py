@@ -47,6 +47,10 @@ def formLayout_ColorLED(form):
 def formLayout_Digit(form):
     'Layout form digitl Control'
     frameDigit = Frame(form, borderwidth=1, relief=GROOVE)
+
+    label1 = Label(frameDigit, text="數字顯示:",font=("Helvetica", 20))
+    label1.pack(side=LEFT,padx=3,pady=3)
+
     for i in range(10):
         SetDigitButton(frameDigit, i)
     frameDigit.pack(padx=10, pady=10, fill=X)
@@ -93,16 +97,16 @@ def buttonRelay_Click(flag):
 
 def buttonColorLed_Click(color):
     colorPin=dictColorLed.get(color)
-    print("color pin:",colorPin)
+    #print("color pin:",colorPin)
     setValue = not IO.input(colorPin)
     if setValue == 1:
         setText = "點亮"
     else:
         setText = "熄滅"
-    print(setText, color)
+    print(setText, color, end=". ")
     IO.output(colorPin, setValue)
     for i in ColorLed:
-        print(i[0],IO.input(i[1]))
+        print(i[0],IO.input(i[1]), end=", ")
     print("")
 
 PinRelay = 12
