@@ -159,7 +159,7 @@ PinRelay = 12
 PinLedRed = 16
 PinLedGreen = 20
 PinLedBlue = 21
-ColorLed(["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue])
+ColorLed=(["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue])
 PinSenvenLed = (17,4,23,24,25,27,22,18)
 
 IO.setwarnings(False)
