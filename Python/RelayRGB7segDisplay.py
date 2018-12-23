@@ -68,6 +68,7 @@ def SetColorLedButton(form,color):
         pady=20,
         command=lambda: buttonColorLed_Click(color)
     )
+    button.pack(side=LEFT, padx=3, pady=3)
 
 def buttonDigits_Click(n):
     print(n, "按下了")
