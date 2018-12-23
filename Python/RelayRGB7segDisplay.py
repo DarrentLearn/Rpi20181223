@@ -1,44 +1,45 @@
 import RPi.GPIO as IO
 from tkinter import *
 
-def formInterface(form):
-    'define form interface'
-    
-    frame = Frame(form, borderwidth=1, relief=GROOVE)
+def formLayout_Relay(form):
+    'Layout form relay control'    
+    frameRelay = Frame(form, borderwidth=1, relief=GROOVE)
 
-    label1 = Label(frame, text="Relay 控制:",font=("Helvetica", 20))
+    label1 = Label(frameRelay, text="Relay 控制:",font=("Helvetica", 20))
     label1.pack(side=LEFT,padx=3,pady=3)
     
     buttonOn = Button(
-        frame,
+        frameRelay,
         text="ON",
         font=("Helvetica", 20),
         bg="GREEN",
         padx=40,
         pady=20,
-        command=lambda: buttonRelay_Click(1)
+        command=buttonRelay_Click(1)
         )
     buttonOn.pack(side=LEFT, padx=3,pady=3)
     buttonOff = Button(
-        frame,
+        frameRelay,
         text="OFF",
         font=("Helvetica", 20),
         bg="RED",
         padx=40,
         pady=20,
-        command=lambda: buttonRelay_Click(0)
+        command=buttonRelay_Click(0)
         )
     buttonOff.pack(side=LEFT, padx=3,pady=3)
     
-    frame.pack(padx=10,pady=10, fill=X)
+    frameRelay.pack(padx=10,pady=10, fill=X)
     
-    frame2 = Frame(form, borderwidth=1, relief=GROOVE)
+def formLayout_ColorLED(form):
+    'Layout form Color LED control'
+    frameColorLED = Frame(form, borderwidth=1, relief=GROOVE)
 
-    label1 = Label(frame2, text="COLOR LED 控制:",font=("Helvetica", 20))
+    label1 = Label(frameColorLED, text="COLOR LED 控制:",font=("Helvetica", 20))
     label1.pack(side=LEFT,padx=3,pady=3)
     
     buttonRed = Button(
-        frame2,
+        frameColorLED,
         text="Red",
         font=("Helvetica", 20),
         bg="Red",
@@ -48,7 +49,7 @@ def formInterface(form):
         )
     buttonRed.pack(side=LEFT, padx=3,pady=3)
     buttonGreen = Button(
-        frame2,
+        frameColorLED,
         text="Green",
         font=("Helvetica", 20),
         bg="Green",
@@ -58,7 +59,7 @@ def formInterface(form):
         )
     buttonGreen.pack(side=LEFT, padx=3,pady=3)
     buttonBlue = Button(
-        frame2,
+        frameColorLED,
         text="Blue",
         font=("Helvetica", 20),
         bg="Blue",
@@ -68,16 +69,14 @@ def formInterface(form):
         )
     buttonBlue.pack(side=LEFT, padx=3,pady=3)
     
-    frame2.pack(padx=10,pady=10, fill=X)
+    frameColorLED.pack(padx=10,pady=10, fill=X)
     
-    frame3 = Frame(form, borderwidth=1, relief=GROOVE)
+def formLayout_Digit(form):
+    'Layout form digitl Control'
+    frameDigit = Frame(form, borderwidth=1, relief=GROOVE)
     for i in range(10):
-        SetDigitButton(frame3, i)
-    frame3.pack(padx=10, pady=10, fill=X)
-
-def buttonDigits_Click(n):
-    print(n, "按下了")
-    ShowDigit(n)
+        SetDigitButton(frameDigit, i)
+    frameDigit.pack(padx=10, pady=10, fill=X)
 
 def ShowDigit(n):
     nv = font[n]
@@ -85,6 +84,10 @@ def ShowDigit(n):
     for p in senvenLed:
         IO.output(p,nv[i])
         i += 1
+
+def buttonDigits_Click(n):
+    print(n, "按下了")
+    ShowDigit(n)
 
 def SetDigitButton(frame, buttonText):
     button = Button(
@@ -101,8 +104,17 @@ def buttonRelay_Click(flag):
         print ("OFF 按下了")
     else:
         print ("ON 按下了")
-    IO.output(RelayPin,flag)
-    
+    IO.output(LedPin,flag)
+
+def buttonColorLed_Click(colorLed):
+    oldState = not IO.input(colorLed)
+    if oldState == 1:
+        newState = "點亮"
+    else:
+        newState = "熄滅"
+    print(newState, colorLed)
+    IO.output(colorLed, oldState)
+
 def buttonRed_Click():
     print("Red 按下了")
     IO.output(LedRed,1)
@@ -156,5 +168,7 @@ if __name__ == '__main__':
     form.geometry("800x600")
     form.option_add("*Button.Background","#004A9B")
     form.option_add("*Button.Foreground","white")
-    formInterface(form)
+    formLayout_Relay(form)
+    formLayout_ColorLED(form)
+    formLayout_Digit(form)
     form.mainloop()
