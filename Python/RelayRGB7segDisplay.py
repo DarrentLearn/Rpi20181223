@@ -92,14 +92,8 @@ def buttonRelay_Click(flag):
     IO.output(PinRelay,flag)
 
 def buttonColorLed_Click(color):
-    if color == "Red":
-        colorPin = PinLedRed
-    elif color == "Green":
-        colorPin = PinLedGreen
-    elif color == "Blue":
-        colorPin = PinLedBlue
+    colorPin=dictColorLed.get(color)
     print("color pin:",colorPin)
-
     setValue = not IO.input(colorPin)
     if setValue == 1:
         setText = "點亮"
@@ -112,7 +106,7 @@ PinRelay = 12
 PinLedRed = 16
 PinLedGreen = 20
 PinLedBlue = 21
-ColorLed=(["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue])
+dictColorLed=dict([["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue]])
 PinSenvenLed = (17,4,23,24,25,27,22,18)
 
 IO.setwarnings(False)
