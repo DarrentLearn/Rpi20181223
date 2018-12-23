@@ -15,7 +15,7 @@ def formLayout_Relay(form):
         bg="GREEN",
         padx=40,
         pady=20,
-        command=buttonRelay_Click(1)
+        command=lambda: buttonRelay_Click(1)
         )
     buttonOn.pack(side=LEFT, padx=3,pady=3)
     buttonOff = Button(
@@ -25,7 +25,7 @@ def formLayout_Relay(form):
         bg="RED",
         padx=40,
         pady=20,
-        command=buttonRelay_Click(0)
+        command=lambda: buttonRelay_Click(0)
         )
     buttonOff.pack(side=LEFT, padx=3,pady=3)
     
