@@ -37,6 +37,10 @@ def formLayout_ColorLED(form):
 
     label1 = Label(frameColorLED, text="COLOR LED 控制:",font=("Helvetica", 20))
     label1.pack(side=LEFT,padx=3,pady=3)
+
+    buttonsColorLeds = (Red,Green,Blue)
+    for buttonColor in buttonsColorLeds:
+        SetColorLedButton(buttonColor)
     
     buttonRed = Button(
         frameColorLED,
@@ -79,11 +83,22 @@ def formLayout_Digit(form):
     frameDigit.pack(padx=10, pady=10, fill=X)
 
 def ShowDigit(n):
-    nv = font[n]
+    nv = FontDigit[n]
     i = 0
-    for p in senvenLed:
+    for p in PinSenvenLed:
         IO.output(p,nv[i])
         i += 1
+
+def SetColorLedButton(color):
+    button = Button(
+        frameColorLED,
+        text=color,
+        font=("Helvetica", 20),
+        bg=color,
+        padx=40,
+        pady=20,
+        command=lambda: buttonColorLed_Click(color)
+    )
 
 def buttonDigits_Click(n):
     print(n, "按下了")
@@ -106,49 +121,59 @@ def buttonRelay_Click(flag):
         print ("ON 按下了")
     IO.output(LedPin,flag)
 
-def buttonColorLed_Click(colorLed):
-    oldState = not IO.input(colorLed)
-    if oldState == 1:
-        newState = "點亮"
+def buttonColorLed_Click(color):
+    if color == "Red":
+        colorPin = PinLedRed
+    elif color == "Green":
+        colorPin = PinLedGreen
+    elif color == "Blue":
+        colorPin = PinLedBlue
+
+    setValue = not IO.input(colorPin)
+    if setValue == 1:
+        setText = "點亮"
     else:
-        newState = "熄滅"
-    print(newState, colorLed)
-    IO.output(colorLed, oldState)
+        setText = "熄滅"
+    print(setText, color)
+    IO.output(colorPin, setValue)
 
 def buttonRed_Click():
     print("Red 按下了")
-    IO.output(LedRed,1)
-    IO.output(LedGreen,0)
-    IO.output(LedBlue,0)
+    IO.output(PinLedRed,1)
+    IO.output(PinLedGreen,0)
+    IO.output(PinLedBlue,0)
 
 def buttonGreen_Click():
     print("Green 按下了")
-    IO.output(LedRed,0)
-    IO.output(LedGreen,1)
-    IO.output(LedBlue,0)
+    IO.output(PinLedRed,0)
+    IO.output(PinLedGreen,1)
+    IO.output(PinLedBlue,0)
 
 def buttonBlue_Click():
     print("Blue 按下了")
-    IO.output(LedRed,0)
-    IO.output(LedGreen,0)
-    IO.output(LedBlue,1)
+    IO.output(PinLedRed,0)
+    IO.output(PinLedGreen,0)
+    IO.output(PinLedBlue,1)
 
-RelayPin = 12
-LedRed = 16
-LedGreen = 20
-LedBlue = 21
-senvenLed = (17,4,23,24,25,27,22,18)
+PinRelay = 12
+PinLedRed = 16
+PinLedGreen = 20
+PinLedBlue = 21
+ColorLed(["Red",PinLedRed],["Green",PinLedGreen],["Blue",PinLedBlue])
+PinSenvenLed = (17,4,23,24,25,27,22,18)
 
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
-IO.setup(RelayPin,IO.OUT)
-IO.setup(LedRed,IO.OUT)
-IO.setup(LedGreen,IO.OUT)
-IO.setup(LedBlue,IO.OUT)
-for x in senvenLed:
+
+IO.setup(PinRelay,IO.OUT)
+
+for cl in ColorLed:
+    IO.setup(cl[1],IO.OUT)
+
+for x in PinSenvenLed:
     IO.setup(x,IO.OUT)
 
-font = {
+FontDigit = {
     0 :(1, 1, 1, 1, 1, 1, 0, 0),
     1 :(0, 1, 1, 0, 0, 0, 0, 0),
     2 :(1, 1, 0, 1, 1, 0, 1, 0),
