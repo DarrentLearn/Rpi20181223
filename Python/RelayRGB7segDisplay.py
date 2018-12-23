@@ -114,7 +114,7 @@ IO.setmode(IO.BCM)
 
 IO.setup(PinRelay,IO.OUT)
 
-for cl in ColorLed:
+for cl in dictColorLed:
     IO.setup(cl[1],IO.OUT)
 
 for x in PinSenvenLed:
