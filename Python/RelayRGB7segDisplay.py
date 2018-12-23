@@ -40,7 +40,7 @@ def formLayout_ColorLED(form):
 
     buttonsColorLeds = ("Red","Green","Blue")
     for buttonColor in buttonsColorLeds:
-        SetColorLedButton(buttonColor)
+        SetColorLedButton(frameColorLED,buttonColor)
     
     frameColorLED.pack(padx=10,pady=10, fill=X)
     
@@ -58,9 +58,9 @@ def ShowDigit(n):
         IO.output(p,nv[i])
         i += 1
 
-def SetColorLedButton(color):
+def SetColorLedButton(form,color):
     button = Button(
-        frameColorLED,
+        form,
         text=color,
         font=("Helvetica", 20),
         bg=color,
