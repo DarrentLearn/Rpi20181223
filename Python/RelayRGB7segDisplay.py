@@ -101,12 +101,9 @@ def buttonColorLed_Click(color):
         setText = "熄滅"
     print(setText, color)
     IO.output(colorPin, setValue)
-    message=""
     for i in ColorLed:
-        message += i[0]
-        messge += IO.input(i[1])
-        message += ", "
-    print(messge)
+        print(i[0],IO.input(i[1]))
+    print("")
 
 PinRelay = 12
 PinLedRed = 16
