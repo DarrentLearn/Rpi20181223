@@ -1,22 +1,39 @@
 class Animal:
     def __init__(self, name):
         self.ScientificName = name
+        self.foot=0
 
 class Dog(Animal):
     def __init__(self):
-        return super().__init__("Dog")
+        super().__init__("Dog")
+        self.foot=4
 
-class Cat(Animal):
+    @property
+    def Color(self):
+        return self.__color
+
+    @Color.setter
+    def Color(self, value):
+        self.__color = value
+
+class Chicken(Animal):
     def __init__(self):
-        return super().__init__("Cat")
+        super().__init__("Chicken")
+        self.foot=2
+
+print("\r\n")
 
 dog = Dog()
+dog.Color="yellow"
 print(dog.ScientificName)
-print(type(dog))
+print("foot=",dog.foot)
+print(dog.Color)
+print("type=",type(dog))
+print("\r\n")
 
-cat = Cat()
-print(cat.ScientificName)
-print(type(cat))
+chicken = Chicken()
+print(chicken.ScientificName)
+print("foot=",chicken.foot)
+print("type=",type(chicken))
+print("\r\n")
 
-catabc = Cat()
-print(catabc.ScientificName)
